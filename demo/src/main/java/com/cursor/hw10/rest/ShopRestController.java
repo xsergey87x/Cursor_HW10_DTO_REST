@@ -3,14 +3,16 @@ package com.cursor.hw10.rest;
 
 import com.cursor.hw10.dto.ShopDTO;
 import com.cursor.hw10.entity.Shop;
-import com.cursor.hw10.service.MappingService;
+import com.cursor.hw10.service.ModelMappingService;
 import com.cursor.hw10.service.ShopService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -18,21 +20,22 @@ import java.util.List;
 public class ShopRestController {
 
     private final ShopService shopService;
-    private final MappingService mappingService;
+    private final ModelMappingService modelMappingService;
 
-    public ShopRestController(ShopService shopService, MappingService mappingService) {
+    public ShopRestController(ShopService shopService, ModelMappingService modelMappingService) {
         this.shopService = shopService;
-        this.mappingService = mappingService;
+        this.modelMappingService = modelMappingService;
     }
 
+
     @GetMapping(value = "/getAll")
-    public List<Shop> getAllShops(HttpServletResponse response) throws IOException {
-        return shopService.getAllShops() ;
+    public void getAllShops(HttpServletResponse response) throws IOException {
+        response.getWriter().write(modelMappingService.getJsonFromShop(shopService.getAllShops()));
     }
 
     @GetMapping(value = "/getAllDto")
     public List<ShopDTO> getAllShopsDto() {
-        return mappingService.getAllShopsDto();
+        return null;
     }
 
     @GetMapping(value = "/getShopById/{id}")
@@ -42,7 +45,9 @@ public class ShopRestController {
 
     @PostMapping(value = "/addShop")
     public Shop createShop(HttpServletRequest request) throws IOException {
-        return shopService.createShop(null);
+        BufferedReader reader = request.getReader();
+        String shopJson = reader.lines().collect(Collectors.joining());
+        return shopService.createShop(modelMappingService.getShopFromJson(shopJson));
     }
 
 }

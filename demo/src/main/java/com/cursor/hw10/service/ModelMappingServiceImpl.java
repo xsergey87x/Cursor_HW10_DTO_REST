@@ -3,9 +3,11 @@ package com.cursor.hw10.service;
 import com.cursor.hw10.entity.Shop;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ModelMappingServiceImpl implements ModelMappingService{
     @Override
     public Shop getShopFromJson(String json) {
