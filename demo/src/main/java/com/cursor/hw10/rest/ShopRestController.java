@@ -26,12 +26,12 @@ public class ShopRestController {
     }
 
     @GetMapping(value = "/getAll")
-    public List<Shop> getAllShops() throws IOException {
+    public List<Shop> getAllShops(HttpServletResponse response) throws IOException {
         return shopService.getAllShops() ;
     }
 
     @GetMapping(value = "/getAllDto")
-    public List<ShopDTO> getAllShopsDto() throws IOException{
+    public List<ShopDTO> getAllShopsDto() {
         return mappingService.getAllShopsDto();
     }
 
@@ -41,7 +41,7 @@ public class ShopRestController {
     }
 
     @PostMapping(value = "/addShop")
-    public Shop createShop(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public Shop createShop(HttpServletRequest request) throws IOException {
         return shopService.createShop(null);
     }
 
