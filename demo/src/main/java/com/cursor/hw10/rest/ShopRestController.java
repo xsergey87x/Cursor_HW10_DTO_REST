@@ -18,35 +18,31 @@ import java.util.List;
 public class ShopRestController {
 
     private final ShopService shopService;
-   // private final MappingService mappingService;
+    private final MappingService mappingService;
 
-    public ShopRestController(ShopService shopService) {
+    public ShopRestController(ShopService shopService, MappingService mappingService) {
         this.shopService = shopService;
-       // this.mappingService = mappingService;
+        this.mappingService = mappingService;
     }
 
     @GetMapping(value = "/getAll")
     public List<Shop> getAllShops() throws IOException {
-        //return shopService.getAllShops() ;
-        return null;
+        return shopService.getAllShops() ;
     }
 
     @GetMapping(value = "/getAllDto")
     public List<ShopDTO> getAllShopsDto() throws IOException{
-        //return mappingService.getAllShopsDto();
-        return null;
+        return mappingService.getAllShopsDto();
     }
 
     @GetMapping(value = "/getShopById/{id}")
     public Shop getShopById(@PathVariable Long id) {
-        //return shopService.getShopById(id);
-        return null;
+        return shopService.getShopById(id);
     }
 
     @PostMapping(value = "/addShop")
     public Shop createShop(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        return null;
-        //return shopService.createShop(null);
+        return shopService.createShop(null);
     }
 
 }
