@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AmountWorkersDto {
+public class ShopDTO {
 
     private Long id;
-    private String name;
-    private String country;
+    private String nameShop;
+    private String street;
     private String city;
+    private boolean isSiteExist;
 
 }

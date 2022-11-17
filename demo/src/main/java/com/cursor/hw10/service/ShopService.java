@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ShopService {
 
-    void createShop(Shop shop);
+    Shop createShop(Shop shop);
 
     void deleteShop(Shop shop);
     void deleteShopById(Long shopId);

@@ -1,4 +1,52 @@
 package com.cursor.hw10.rest;
 
+
+import com.cursor.hw10.dto.ShopDTO;
+import com.cursor.hw10.entity.Shop;
+import com.cursor.hw10.service.MappingService;
+import com.cursor.hw10.service.ShopService;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+
+
+@RestController
+@RequestMapping(value = "/shop")
 public class ShopRestController {
+
+    private final ShopService shopService;
+   // private final MappingService mappingService;
+
+    public ShopRestController(ShopService shopService) {
+        this.shopService = shopService;
+       // this.mappingService = mappingService;
+    }
+
+    @GetMapping(value = "/getAll")
+    public List<Shop> getAllShops() throws IOException {
+        //return shopService.getAllShops() ;
+        return null;
+    }
+
+    @GetMapping(value = "/getAllDto")
+    public List<ShopDTO> getAllShopsDto() throws IOException{
+        //return mappingService.getAllShopsDto();
+        return null;
+    }
+
+    @GetMapping(value = "/getShopById/{id}")
+    public Shop getShopById(@PathVariable Long id) {
+        //return shopService.getShopById(id);
+        return null;
+    }
+
+    @PostMapping(value = "/addShop")
+    public Shop createShop(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return null;
+        //return shopService.createShop(null);
+    }
+
 }
