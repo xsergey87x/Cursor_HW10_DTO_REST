@@ -3,6 +3,7 @@ package com.cursor.hw10.rest;
 
 import com.cursor.hw10.dto.ShopDTO;
 import com.cursor.hw10.entity.Shop;
+import com.cursor.hw10.service.MappingService;
 import com.cursor.hw10.service.ModelMappingService;
 import com.cursor.hw10.service.ShopService;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +22,13 @@ public class ShopRestController {
 
     private final ShopService shopService;
     private final ModelMappingService modelMappingService;
+    private final MappingService mappingService;
 
-    public ShopRestController(ShopService shopService, ModelMappingService modelMappingService) {
+    public ShopRestController(ShopService shopService, ModelMappingService modelMappingService, MappingService mappingService) {
         this.shopService = shopService;
         this.modelMappingService = modelMappingService;
+        this.mappingService = mappingService;
     }
-
 
     @GetMapping(value = "/getAll")
     public void getAllShops(HttpServletResponse response) throws IOException {
@@ -35,7 +37,7 @@ public class ShopRestController {
 
     @GetMapping(value = "/getAllDto")
     public List<ShopDTO> getAllShopsDto() {
-        return null;
+        return mappingService.getAllShopsDto();
     }
 
     @GetMapping(value = "/getShopById/{id}")
@@ -49,5 +51,4 @@ public class ShopRestController {
         String shopJson = reader.lines().collect(Collectors.joining());
         return shopService.createShop(modelMappingService.getShopFromJson(shopJson));
     }
-
 }

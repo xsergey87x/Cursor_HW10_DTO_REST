@@ -11,5 +11,4 @@ public interface MappingService {
 
     public ShopDTO convertEntityToDto(Shop shop);
 
-
 }

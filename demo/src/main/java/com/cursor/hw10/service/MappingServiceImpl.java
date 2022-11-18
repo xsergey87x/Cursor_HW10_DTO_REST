@@ -4,8 +4,6 @@ import com.cursor.hw10.dto.ShopDTO;
 import com.cursor.hw10.entity.Shop;
 import com.cursor.hw10.repository.ShopsRepository;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,15 +11,13 @@ import java.util.stream.Collectors;
 
 @Data
 @Service
-public class MappingServiceImpl implements MappingService{
-
+public class MappingServiceImpl implements MappingService {
 
     private ShopsRepository shopsRepository;
 
     public MappingServiceImpl(ShopsRepository shopsRepository) {
         this.shopsRepository = shopsRepository;
     }
-
 
     @Override
     public List<ShopDTO> getAllShopsDto() {
@@ -43,6 +39,4 @@ public class MappingServiceImpl implements MappingService{
         shopDto.setSiteExist(shop.isSiteExist());
         return null;
     }
-
-
 }
